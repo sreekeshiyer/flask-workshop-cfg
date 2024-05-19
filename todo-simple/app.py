@@ -49,6 +49,7 @@ def complete(id : str ):
     
     try: 
         todo_ref.document(id).update({"completed": True})
+        return redirect("/")
         
     except:
         return "There was an issue updating your todo"
@@ -61,8 +62,10 @@ def delete(id: str):
     try: 
         todo_ref = db.collection('todos').document(id)
         todo_ref.delete()
+        return redirect("/")
     except:
         return "There was an issue deleting your todo"
+        
         
         
 if __name__ == '__main__':
