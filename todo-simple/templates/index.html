@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <!-- Import Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center mb-6">Todo List</h1>
+        <form action="/" method="post" class="mb-4">
+            <div class="flex items-center">
+                <input type="text" name="task" placeholder="Add a new task" class="w-full p-2 border border-gray-300 rounded-lg mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Add Task</button>
+            </div>
+        </form>
+        <table class="min-w-full bg-white">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b border-gray-200">Task</th>
+                    <th class="py-2 px-4 border-b border-gray-200">Completed</th>
+                    <th class="py-2 px-4 border-b border-gray-200">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in todos %}
+                <tr>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ todo.task }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200 text-center">
+                        {% if todo.completed %}
+                        🏁
+                        {% else %}
+                        ❌
+                        {% endif %}
+                    </td>
+                    <td class="py-2 px-4 border-b border-gray-200 flex justify-center">
+                        <a href="/complete/{{ todo.id }}" class="text-green-500 hover:text-green-700 mx-1">✔️ Completed</a>
+                        <a href="/delete/{{ todo.id }}" class="text-red-500 hover:text-red-700 mx-1">🗑️ Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
