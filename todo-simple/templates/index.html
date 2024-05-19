@@ -16,6 +16,9 @@
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Add Task</button>
             </div>
         </form>
+        {% if todos|length == 0 %}
+        <h2 class="text-xl text-center text-gray-500 mt-4">No tasks available 🙁</h2>
+        {% else %}
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
@@ -43,6 +46,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
     </div>
 </body>
 </html>
